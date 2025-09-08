@@ -5,16 +5,16 @@ declare(strict_types = 1);
 header('Content-Type: application/json');
 
 // post requests only (into body not url)
-if ($_SERVER['REQUEST_METHOD'] != 'POST') {
+if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405); // method is not allowed
-    echo json_encode(['status' => 'error', 'message' => 'Please use POST']);
+    echo "Please use POST\n";
     exit;
 }
 
 // pull values from $_POST and use empty strings for missing keys.
 $name = (string)($_POST['name'] ?? '');
 $email = (string)($_POST['email'] ?? '');
-$subject = (string)($_POST['email'] ?? '');
+$subject = (string)($_POST['subject'] ?? '');
 $message = (string)($_POST['message'] ?? '');
 
 // trimming in case of extra spaces
